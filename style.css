@@ -1,4 +1,157 @@
 
+/* =========================
+   HEADER
+========================= */
+
+.site-header {
+    width: 100%;
+    background: #f2e8d8;
+    position: relative;
+    z-index: 1000;
+}
+
+.nav-wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+/* LOGO */
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+
+.brand-logo {
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+}
+
+.brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.brand-name {
+    font-family: serif;
+    font-size: 25px;
+    letter-spacing: 2px;
+    color: #594532;
+}
+
+.brand-tag {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: #80694f;
+}
+
+/* NAVIGATION */
+
+.nav-side {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+#mainNav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+#mainNav a {
+    text-decoration: none;
+    color: #594532;
+    font-size: 13px;
+    transition: color 0.3s ease;
+}
+
+#mainNav a:hover {
+    color: #b18a60;
+}
+
+/* LANGUAGE SWITCH */
+
+.lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.lang-switch a {
+    text-decoration: none;
+    opacity: 0.65;
+}
+
+.lang-switch a.active {
+    opacity: 1;
+}
+
+/* MOBILE MENU */
+
+.menu-toggle {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 25px;
+    color: #594532;
+    cursor: pointer;
+}
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+    .nav-wrap {
+        padding: 15px 5%;
+    }
+
+    .brand-logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .brand-name {
+        font-size: 19px;
+    }
+
+    .nav-side {
+        gap: 12px;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    #mainNav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #f2e8d8;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 25px;
+    }
+
+    #mainNav.active {
+        display: flex;
+    }
+
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root {
