@@ -1,50 +1,563 @@
-// Kruunun Beauty – shared interactions for FI / SV / EN pages.
+
+// Kruunun Beauty – Shared interactions for FI / SV / EN pages.
+
 const LANG = document.documentElement.dataset.lang || "fi";
-const BOOKING_URL = "https://varaa.timma.fi/YOUR_SALON_NAME"; // Replace with your Timma online booking URL.
+
+const BOOKING_URL = "https://varaa.timma.fi/YOUR_SALON_NAME";
+
+// --------------------------------------------------
+// IMAGES
+// --------------------------------------------------
+
 const IMG = {
-  mani:["https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85"],
-  pedi:["https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=85"],
-  facial:["https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85"],
-  head:["https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=85"],
-  stones:["https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=85"],
-  lips:["https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85"],
-  brows:["https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1633681926022-84c23e8cb2d2?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"],
-  liner:["https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"],
-  micro:["https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1633681926022-84c23e8cb2d2?auto=format&fit=crop&w=1200&q=85","https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85"]
+  mani: [
+    "https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1632345031435-8727f6897d53?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  pedi: [
+    "https://images.unsplash.com/photo-1519014816548-bf5fe059798b?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1519415510236-718bdfcd89c8?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1610992015732-2449b76344bc?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  facial: [
+    "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1601049541289-9b1b7bbbfe19?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  head: [
+    "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  stones: [
+    "https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1600334129128-685c5582fd35?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  lips: [
+    "https://images.unsplash.com/photo-1583001809873-a128495da465?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  brows: [
+    "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d2?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  liner: [
+    "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=1200&q=85"
+  ],
+
+  micro: [
+    "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1633681926022-84c23e8cb2d2?auto=format&fit=crop&w=1200&q=85",
+    "https://images.unsplash.com/photo-1516975080664-ed2fc6a32937?auto=format&fit=crop&w=1200&q=85"
+  ]
 };
+
+
+// --------------------------------------------------
+// SERVICES
+// --------------------------------------------------
+
 const SERVICES = [
- {id:"mani",price:"39 €",duration:"45 min",title:{fi:"Manikyyri",sv:"Manikyr",en:"Manicure"},desc:{fi:"Huolellinen käsien ja kynsien hoito. Sisältää kynsien muotoilun, kynsinauhojen siistimisen, käsien kosteutuksen ja viimeistelyn valitsemallasi lakalla.",sv:"Omsorgsfull vård av händer och naglar. Inkluderar formning av naglar, vård av nagelband, återfuktning av händerna och finish med valt lack.",en:"A careful hand and nail treatment. Includes nail shaping, cuticle care, hand moisturising and a finish with your chosen polish."},short:{fi:"Käsien ja kynsien huoliteltu hoito.",sv:"Vårdade händer och naglar med fin finish.",en:"Beautifully groomed hands and nails."},images:IMG.mani},
- {id:"pedi",price:"59 €",duration:"60 min",title:{fi:"Pedikyyri",sv:"Pedikyr",en:"Pedicure"},desc:{fi:"Rentouttava jalkahoito, joka sisältää jalkojen kylvetyksen, kynsien ja kynsinauhojen hoidon, kovettumien kevyen käsittelyn sekä kosteuttavan viimeistelyn.",sv:"Avkopplande fotvård med fotbad, nagel- och nagelbandsvård, varsam behandling av förhårdnader och återfuktande avslutning.",en:"A relaxing foot treatment including a foot soak, nail and cuticle care, gentle work on rough skin and a moisturising finish."},short:{fi:"Pehmeät jalat ja huolitellut kynnet.",sv:"Mjuka fötter och välvårdade naglar.",en:"Soft feet and beautifully groomed nails."},images:IMG.pedi},
- {id:"facial",price:"79 €",duration:"60 min",title:{fi:"Kasvohoito",sv:"Ansiktsbehandling",en:"Facial treatment"},desc:{fi:"Ihon tarpeisiin räätälöity kasvohoito. Sisältää alkupuhdistuksen, ihon analyysin, kuorinnan, naamion ja kosteuttavat hoitotuotteet.",sv:"En ansiktsbehandling anpassad efter din hud. Inkluderar rengöring, hudanalys, peeling, mask och återfuktande produkter.",en:"A facial tailored to your skin's needs. Includes cleansing, skin analysis, exfoliation, a mask and hydrating skincare."},short:{fi:"Ihon tarpeisiin räätälöity kasvohoito.",sv:"Ansiktsvård anpassad efter din hud.",en:"Skincare tailored to your skin."},images:IMG.facial},
- {id:"head",price:"39 €",duration:"30 min",title:{fi:"Pään ja niskan hieronta",sv:"Huvud- och nackmassage",en:"Head & neck massage"},desc:{fi:"Rauhoittava hieronta pään, niskan ja hartioiden alueelle. Sopii rentoutumiseen ja arjen jännitysten helpottamiseen.",sv:"En lugnande massage av huvud, nacke och axlar. Passar för avkoppling och för att mjuka upp spänningar i vardagen.",en:"A soothing massage for the head, neck and shoulders. Ideal for relaxation and easing everyday tension."},short:{fi:"Rentoutusta pään, niskan ja hartioiden alueelle.",sv:"Avkoppling för huvud, nacke och axlar.",en:"Relaxation for the head, neck and shoulders."},images:IMG.head},
- {id:"stones",price:"89 €",duration:"60 min",title:{fi:"Kuumakivihieronta",sv:"Hot stone-massage",en:"Hot stone massage"},desc:{fi:"Kokonaisvaltainen rentoutushoito, jossa käytetään lämmitettyjä hierontakiviä. Lämpö ja rauhalliset hierontaotteet auttavat kehoa rentoutumaan.",sv:"En helhetsinriktad avkopplande behandling med uppvärmda massagestenar. Värmen och de lugna massagerörelserna hjälper kroppen att slappna av.",en:"A deeply relaxing treatment using warmed massage stones. Gentle massage movements and soothing warmth help the body unwind."},short:{fi:"Lämpöä ja syvää rentoutumista.",sv:"Värme och djup avslappning.",en:"Soothing warmth and deep relaxation."},images:IMG.stones},
- {id:"lips",price:"250 €",duration:"150 min",title:{fi:"Huulten kestopigmentointi",sv:"Permanent läppigmentering",en:"Permanent lip blush"},desc:{fi:"Huulten sävyn ja muodon korostamiseen suunniteltu pigmentointi. Lopullinen sävy valitaan yhdessä konsultaation yhteydessä. Jälkihoito-ohjeet annetaan hoidon jälkeen.",sv:"Pigmentering som framhäver läpparnas färg och form. Slutlig nyans väljs tillsammans vid konsultationen. Eftervårdsinstruktioner ges efter behandlingen.",en:"Pigmentation designed to enhance the natural colour and shape of the lips. The final shade is selected together during consultation. Aftercare instructions are provided."},short:{fi:"Luonnollisesti korostetut huulet.",sv:"Läppar med naturligt framhävd färg.",en:"A soft enhancement of natural lip colour."},images:IMG.lips},
- {id:"brows",price:"250 €",duration:"150 min",title:{fi:"Kulmien kestopigmentointi",sv:"Permanent ögonbrynspigmentering",en:"Permanent eyebrow makeup"},desc:{fi:"Kulmien muotoa ja ilmettä korostava kestopigmentointi. Muoto ja sävy suunnitellaan kasvonpiirteiden ja toiveidesi mukaan konsultaation yhteydessä.",sv:"Permanent pigmentering som framhäver ögonbrynens form. Form och färg planeras efter dina ansiktsdrag och önskemål vid konsultationen.",en:"Permanent pigmentation to define your brows. Shape and shade are planned to complement your features and preferences during consultation."},short:{fi:"Yksilöllisesti muotoillut ja sävytetyt kulmat.",sv:"Personligt formade och färgsatta bryn.",en:"Brows shaped and shaded to suit you."},images:IMG.brows},
- {id:"liner",price:"220 €",duration:"120 min",title:{fi:"Silmänrajausten pigmentointi",sv:"Permanent eyeliner / fransmarkering",en:"Permanent eyeliner / lash enhancement"},desc:{fi:"Ripsirajan tai silmänrajauksen pigmentointi, joka korostaa silmiä. Sopiva tekniikka ja muoto sovitaan ennakkokonsultaatiossa.",sv:"Pigmentering längs fransraden eller eyeliner som framhäver ögonen. Teknik och form bestäms vid en konsultation före behandlingen.",en:"Pigmentation along the lash line or eyeliner to define the eyes. The suitable technique and shape are agreed during a prior consultation."},short:{fi:"Katsetta korostava pigmentointi ripsirajaan.",sv:"Pigmentering som framhäver fransraden.",en:"Pigmentation to define and enhance the lash line."},images:IMG.liner},
- {id:"micro",price:"250 €",duration:"120 min",title:{fi:"Microblading",sv:"Microblading",en:"Microblading"},desc:{fi:"Karvatekniikalla tehtävä kulmien muotoilu, jossa piirretään luonnollista karvaa jäljitteleviä viivoja. Sisältää muodon suunnittelun ja sävyn valinnan.",sv:"Formning av ögonbryn med stråteknik där tunna linjer efterliknar naturliga hårstrån. Inkluderar formplanering och val av färg.",en:"A brow technique using fine hair-like strokes to create a natural-looking shape. Includes brow mapping and shade selection."},short:{fi:"Luonnollista karvatekniikkaa kulmille.",sv:"Naturliga ögonbryn med stråteknik.",en:"Natural-looking brows created with fine strokes."},images:IMG.micro}
+  {
+    id: "mani",
+    price: "39 €",
+    duration: "45 min",
+
+    title: {
+      fi: "Manikyyri",
+      sv: "Manikyr",
+      en: "Manicure"
+    },
+
+    desc: {
+      fi: "Huolellinen käsien ja kynsien hoito. Sisältää kynsien muotoilun, kynsinauhojen siistimisen, käsien kosteutuksen ja viimeistelyn valitsemallasi lakalla.",
+      sv: "Omsorgsfull vård av händer och naglar. Inkluderar formning av naglar, vård av nagelband, återfuktning av händerna och finish med valt lack.",
+      en: "A careful hand and nail treatment. Includes nail shaping, cuticle care, hand moisturising and a finish with your chosen polish."
+    },
+
+    short: {
+      fi: "Käsien ja kynsien huoliteltu hoito.",
+      sv: "Vårdade händer och naglar med fin finish.",
+      en: "Beautifully groomed hands and nails."
+    },
+
+    images: IMG.mani
+  },
+
+  {
+    id: "pedi",
+    price: "59 €",
+    duration: "60 min",
+
+    title: {
+      fi: "Pedikyyri",
+      sv: "Pedikyr",
+      en: "Pedicure"
+    },
+
+    desc: {
+      fi: "Rentouttava jalkahoito, joka sisältää jalkojen kylvetyksen, kynsien ja kynsinauhojen hoidon, kovettumien kevyen käsittelyn sekä kosteuttavan viimeistelyn.",
+      sv: "Avkopplande fotvård med fotbad, nagel- och nagelbandsvård, varsam behandling av förhårdnader och återfuktande avslutning.",
+      en: "A relaxing foot treatment including a foot soak, nail and cuticle care, gentle work on rough skin and a moisturising finish."
+    },
+
+    short: {
+      fi: "Pehmeät jalat ja huolitellut kynnet.",
+      sv: "Mjuka fötter och välvårdade naglar.",
+      en: "Soft feet and beautifully groomed nails."
+    },
+
+    images: IMG.pedi
+  },
+
+  {
+    id: "facial",
+    price: "79 €",
+    duration: "60 min",
+
+    title: {
+      fi: "Kasvohoito",
+      sv: "Ansiktsbehandling",
+      en: "Facial treatment"
+    },
+
+    desc: {
+      fi: "Ihon tarpeisiin räätälöity kasvohoito. Sisältää alkupuhdistuksen, ihon analyysin, kuorinnan, naamion ja kosteuttavat hoitotuotteet.",
+      sv: "En ansiktsbehandling anpassad efter din hud. Inkluderar rengöring, hudanalys, peeling, mask och återfuktande produkter.",
+      en: "A facial tailored to your skin's needs. Includes cleansing, skin analysis, exfoliation, a mask and hydrating skincare."
+    },
+
+    short: {
+      fi: "Ihon tarpeisiin räätälöity kasvohoito.",
+      sv: "Ansiktsvård anpassad efter din hud.",
+      en: "Skincare tailored to your skin."
+    },
+
+    images: IMG.facial
+  },
+
+  {
+    id: "head",
+    price: "39 €",
+    duration: "30 min",
+
+    title: {
+      fi: "Pään ja niskan hieronta",
+      sv: "Huvud- och nackmassage",
+      en: "Head & neck massage"
+    },
+
+    desc: {
+      fi: "Rauhoittava hieronta pään, niskan ja hartioiden alueelle. Sopii rentoutumiseen ja arjen jännitysten helpottamiseen.",
+      sv: "En lugnande massage av huvud, nacke och axlar. Passar för avkoppling och för att mjuka upp spänningar i vardagen.",
+      en: "A soothing massage for the head, neck and shoulders. Ideal for relaxation and easing everyday tension."
+    },
+
+    short: {
+      fi: "Rentoutusta pään, niskan ja hartioiden alueelle.",
+      sv: "Avkoppling för huvud, nacke och axlar.",
+      en: "Relaxation for the head, neck and shoulders."
+    },
+
+    images: IMG.head
+  },
+
+  {
+    id: "stones",
+    price: "89 €",
+    duration: "60 min",
+
+    title: {
+      fi: "Kuumakivihieronta",
+      sv: "Hot stone-massage",
+      en: "Hot stone massage"
+    },
+
+    desc: {
+      fi: "Kokonaisvaltainen rentoutushoito, jossa käytetään lämmitettyjä hierontakiviä. Lämpö ja rauhalliset hierontaotteet auttavat kehoa rentoutumaan.",
+      sv: "En helhetsinriktad avkopplande behandling med uppvärmda massagestenar. Värmen och de lugna massagerörelserna hjälper kroppen att slappna av.",
+      en: "A deeply relaxing treatment using warmed massage stones. Gentle massage movements and soothing warmth help the body unwind."
+    },
+
+    short: {
+      fi: "Lämpöä ja syvää rentoutumista.",
+      sv: "Värme och djup avslappning.",
+      en: "Soothing warmth and deep relaxation."
+    },
+
+    images: IMG.stones
+  },
+
+  {
+    id: "lips",
+    price: "250 €",
+    duration: "150 min",
+
+    title: {
+      fi: "Huulten kestopigmentointi",
+      sv: "Permanent läppigmentering",
+      en: "Permanent lip blush"
+    },
+
+    desc: {
+      fi: "Huulten sävyn ja muodon korostamiseen suunniteltu pigmentointi. Lopullinen sävy valitaan yhdessä konsultaation yhteydessä. Jälkihoito-ohjeet annetaan hoidon jälkeen.",
+      sv: "Pigmentering som framhäver läpparnas färg och form. Slutlig nyans väljs tillsammans vid konsultationen. Eftervårdsinstruktioner ges efter behandlingen.",
+      en: "Pigmentation designed to enhance the natural colour and shape of the lips. The final shade is selected together during consultation. Aftercare instructions are provided."
+    },
+
+    short: {
+      fi: "Luonnollisesti korostetut huulet.",
+      sv: "Läppar med naturligt framhävd färg.",
+      en: "A soft enhancement of natural lip colour."
+    },
+
+    images: IMG.lips
+  },
+
+  {
+    id: "brows",
+    price: "250 €",
+    duration: "150 min",
+
+    title: {
+      fi: "Kulmien kestopigmentointi",
+      sv: "Permanent ögonbrynspigmentering",
+      en: "Permanent eyebrow makeup"
+    },
+
+    desc: {
+      fi: "Kulmien muotoa ja ilmettä korostava kestopigmentointi. Muoto ja sävy suunnitellaan kasvonpiirteiden ja toiveidesi mukaan konsultaation yhteydessä.",
+      sv: "Permanent pigmentering som framhäver ögonbrynens form. Form och färg planeras efter dina ansiktsdrag och önskemål vid konsultationen.",
+      en: "Permanent pigmentation to define your brows. Shape and shade are planned to complement your features and preferences during consultation."
+    },
+
+    short: {
+      fi: "Yksilöllisesti muotoillut ja sävytetyt kulmat.",
+      sv: "Personligt formade och färgsatta bryn.",
+      en: "Brows shaped and shaded to suit you."
+    },
+
+    images: IMG.brows
+  },
+
+  {
+    id: "liner",
+    price: "220 €",
+    duration: "120 min",
+
+    title: {
+      fi: "Silmänrajausten pigmentointi",
+      sv: "Permanent eyeliner / fransmarkering",
+      en: "Permanent eyeliner / lash enhancement"
+    },
+
+    desc: {
+      fi: "Ripsirajan tai silmänrajauksen pigmentointi, joka korostaa silmiä. Sopiva tekniikka ja muoto sovitaan ennakkokonsultaatiossa.",
+      sv: "Pigmentering längs fransraden eller eyeliner som framhäver ögonen. Teknik och form bestäms vid en konsultation före behandlingen.",
+      en: "Pigmentation along the lash line or eyeliner to define the eyes. The suitable technique and shape are agreed during a prior consultation."
+    },
+
+    short: {
+      fi: "Katsetta korostava pigmentointi ripsirajaan.",
+      sv: "Pigmentering som framhäver fransraden.",
+      en: "Pigmentation to define and enhance the lash line."
+    },
+
+    images: IMG.liner
+  },
+
+  {
+    id: "micro",
+    price: "250 €",
+    duration: "120 min",
+
+    title: {
+      fi: "Microblading",
+      sv: "Microblading",
+      en: "Microblading"
+    },
+
+    desc: {
+      fi: "Karvatekniikalla tehtävä kulmien muotoilu, jossa piirretään luonnollista karvaa jäljitteleviä viivoja. Sisältää muodon suunnittelun ja sävyn valinnan.",
+      sv: "Formning av ögonbryn med stråteknik där tunna linjer efterliknar naturliga hårstrån. Inkluderar formplanering och val av färg.",
+      en: "A brow technique using fine hair-like strokes to create a natural-looking shape. Includes brow mapping and shade selection."
+    },
+
+    short: {
+      fi: "Luonnollista karvatekniikkaa kulmille.",
+      sv: "Naturliga ögonbryn med stråteknik.",
+      en: "Natural-looking brows created with fine strokes."
+    },
+
+    images: IMG.micro
+  }
 ];
-const WORDS={
- fi:{book:"Varaa aika",duration:"Kesto",price:"Hinta alkaen",details:"Hoidon kuvaus",close:"Sulje",prev:"Edellinen kuva",next:"Seuraava kuva",from:"Alkaen",view:"Lue lisää",bookTreatment:"Varaa tämä hoito",bookingTitle:"Varaa aika verkossa",bookingDesc:"Valitse palvelu, vapaa aika ja vahvista varauksesi Timman turvallisessa ajanvarauksessa.",bookingSetup:"Timma-ajanvaraus liitetään tähän, kun saat oman varauslinkin tai upotuskoodin.",aboutEyebrow:"Tervetuloa",aboutTitle:"Kauneutta yksityiskohdissa",about1:"Kruunun Beauty tarjoaa rauhallisen ja ylellisen ympäristön, jossa voit pysähtyä ja nauttia omasta hetkestäsi.",about2:"Palveluihimme kuuluvat manikyyri, pedikyyri, kasvohoidot, rentouttavat hieronnat sekä kestopigmentointi ja microblading. Jokainen hoito suunnitellaan yksilöllisesti.",heroEyebrow:"Kauneutta, rauhaa ja hemmottelua",heroText:"Ylellinen hetki juuri sinulle. Huolellisesti suunnitellut kauneus- ja hyvinvointihoidot päästä varpaisiin.",heroBtn:"Varaa oma hetkesi",serviceEyebrow:"Palvelumme",serviceTitle:"Hoidot ja hinnat",serviceIntro:"Tutustu hoitoihin klikkaamalla palvelukorttia. Näet lisätiedot, kuvat, hinnan ja keston.",galleryEyebrow:"Tunnelmia",galleryTitle:"Kauneuden hetkiä",galleryIntro:"Kurkistus hoitoihimme ja salonkimme tunnelmaan.",bookingEyebrow:"Ajanvaraus",contactEyebrow:"Löydä meidät",contactTitle:"Yhteystiedot ja sijainti",contactIntro:"Lisää tähän salongin oikea osoite ja yhteystiedot.",address:"Osoite",phone:"Puhelin",email:"Sähköposti",footer:"Kauneutta ja hyvinvointia",priceNote:"Hinnat ja kestot ovat ehdotuksia. Vahvista oma hinnastosi, hoitoajat ja mahdolliset lisäkäynnit ennen julkaisua. Kestopigmentointi ja microblading edellyttävät ennakkokonsultaatiota sekä soveltuvuuden arviointia."},
- sv:{book:"Boka tid",duration:"Behandlingstid",price:"Pris från",details:"Om behandlingen",close:"Stäng",prev:"Föregående bild",next:"Nästa bild",from:"Från",view:"Läs mer",bookTreatment:"Boka denna behandling",bookingTitle:"Boka tid online",bookingDesc:"Välj behandling, ledig tid och bekräfta din bokning via Timmas säkra bokningssystem.",bookingSetup:"Timmas bokning kopplas in här när du har fått din egen bokningslänk eller inbäddningskod.",aboutEyebrow:"Välkommen",aboutTitle:"Skönhet i varje detalj",about1:"Kruunun Beauty erbjuder en lugn och lyxig miljö där du kan stanna upp och njuta av en stund för dig själv.",about2:"Våra tjänster omfattar manikyr, pedikyr, ansiktsbehandlingar, avkopplande massage samt permanent makeup och microblading. Varje behandling anpassas individuellt.",heroEyebrow:"Skönhet, lugn och välbefinnande",heroText:"En lyxig stund bara för dig. Omsorgsfulla skönhets- och välmåendebehandlingar från topp till tå.",heroBtn:"Boka din stund",serviceEyebrow:"Våra tjänster",serviceTitle:"Behandlingar och priser",serviceIntro:"Klicka på ett behandlingskort för att se information, bilder, pris och behandlingstid.",galleryEyebrow:"Inspiration",galleryTitle:"Skönhetsstunder",galleryIntro:"En glimt av våra behandlingar och salongens atmosfär.",bookingEyebrow:"Tidsbokning",contactEyebrow:"Hitta hit",contactTitle:"Kontakt och läge",contactIntro:"Lägg till salongens riktiga adress och kontaktuppgifter här.",address:"Adress",phone:"Telefon",email:"E-post",footer:"Skönhet och välbefinnande",priceNote:"Priser och tider är förslag. Bekräfta din prislista, behandlingstider och eventuella återbesök före publicering. Permanent makeup och microblading kräver konsultation och bedömning före behandling."},
- en:{book:"Book now",duration:"Duration",price:"Price from",details:"About this treatment",close:"Close",prev:"Previous image",next:"Next image",from:"From",view:"Learn more",bookTreatment:"Book this treatment",bookingTitle:"Book online",bookingDesc:"Choose a service, select an available time and confirm your appointment through Timma's secure booking system.",bookingSetup:"Timma booking will be connected here once you have your own booking link or embed code.",aboutEyebrow:"Welcome",aboutTitle:"Beauty in every detail",about1:"Kruunun Beauty offers a calm and luxurious space where you can pause and enjoy a moment just for yourself.",about2:"Our services include manicure, pedicure, facials, relaxing massage, permanent makeup and microblading. Every treatment is tailored to your needs.",heroEyebrow:"Beauty, calm and indulgence",heroText:"A luxurious moment just for you. Thoughtfully designed beauty and wellness treatments from head to toe.",heroBtn:"Book your moment",serviceEyebrow:"Our services",serviceTitle:"Treatments and prices",serviceIntro:"Click a treatment card to view details, photos, price and duration.",galleryEyebrow:"Inspiration",galleryTitle:"Moments of beauty",galleryIntro:"A glimpse of our treatments and salon atmosphere.",bookingEyebrow:"Appointments",contactEyebrow:"Find us",contactTitle:"Contact and location",contactIntro:"Add the salon's real address and contact details here.",address:"Address",phone:"Phone",email:"Email",footer:"Beauty and wellbeing",priceNote:"Prices and durations are suggestions. Confirm your own price list, treatment times and any follow-up appointments before publishing. Permanent makeup and microblading require a prior consultation and suitability assessment."}
+
+
+// --------------------------------------------------
+// TRANSLATIONS
+// --------------------------------------------------
+
+const WORDS = {
+  fi: {
+    book: "Varaa aika",
+    duration: "Kesto",
+    price: "Hinta alkaen",
+    details: "Hoidon kuvaus",
+    close: "Sulje",
+    prev: "Edellinen kuva",
+    next: "Seuraava kuva",
+    from: "Alkaen",
+    view: "Lue lisää",
+    bookTreatment: "Varaa tämä hoito",
+    bookingTitle: "Varaa aika verkossa",
+    bookingDesc: "Valitse palvelu, vapaa aika ja vahvista varauksesi Timman turvallisessa ajanvarauksessa.",
+    bookingSetup: "Timma-ajanvaraus liitetään tähän, kun saat oman varauslinkin tai upotuskoodin.",
+    aboutEyebrow: "Tervetuloa",
+    aboutTitle: "Kauneutta yksityiskohdissa",
+    about1: "Kruunun Beauty tarjoaa rauhallisen ja ylellisen ympäristön, jossa voit pysähtyä ja nauttia omasta hetkestäsi.",
+    about2: "Palveluihimme kuuluvat manikyyri, pedikyyri, kasvohoidot, rentouttavat hieronnat sekä kestopigmentointi ja microblading. Jokainen hoito suunnitellaan yksilöllisesti.",
+    heroEyebrow: "Kauneutta, rauhaa ja hemmottelua",
+    heroText: "Ylellinen hetki juuri sinulle. Huolellisesti suunnitellut kauneus- ja hyvinvointihoidot päästä varpaisiin.",
+    heroBtn: "Varaa oma hetkesi",
+    serviceEyebrow: "Palvelumme",
+    serviceTitle: "Hoidot ja hinnat",
+    serviceIntro: "Tutustu hoitoihin klikkaamalla palvelukorttia. Näet lisätiedot, kuvat, hinnan ja keston.",
+    galleryEyebrow: "Tunnelmia",
+    galleryTitle: "Kauneuden hetkiä",
+    galleryIntro: "Kurkistus hoitoihimme ja salonkimme tunnelmaan.",
+    bookingEyebrow: "Ajanvaraus",
+    contactEyebrow: "Löydä meidät",
+    contactTitle: "Yhteystiedot ja sijainti",
+    contactIntro: "Lisää tähän salongin oikea osoite ja yhteystiedot.",
+    address: "Osoite",
+    phone: "Puhelin",
+    email: "Sähköposti",
+    footer: "Kauneutta ja hyvinvointia",
+    priceNote: "Hinnat ja kestot ovat ehdotuksia. Vahvista oma hinnastosi, hoitoajat ja mahdolliset lisäkäynnit ennen julkaisua. Kestopigmentointi ja microblading edellyttävät ennakkokonsultaatiota sekä soveltuvuuden arviointia."
+  },
+
+  sv: {
+    book: "Boka tid",
+    duration: "Behandlingstid",
+    price: "Pris från",
+    details: "Om behandlingen",
+    close: "Stäng",
+    prev: "Föregående bild",
+    next: "Nästa bild",
+    from: "Från",
+    view: "Läs mer",
+    bookTreatment: "Boka denna behandling",
+    bookingTitle: "Boka tid online",
+    bookingDesc: "Välj behandling, ledig tid och bekräfta din bokning via Timmas säkra bokningssystem.",
+    bookingSetup: "Timmas bokning kopplas in här när du har fått din egen bokningslänk eller inbäddningskod.",
+    aboutEyebrow: "Välkommen",
+    aboutTitle: "Skönhet i varje detalj",
+    about1: "Kruunun Beauty erbjuder en lugn och lyxig miljö där du kan stanna upp och njuta av en stund för dig själv.",
+    about2: "Våra tjänster omfattar manikyr, pedikyr, ansiktsbehandlingar, avkopplande massage samt permanent makeup och microblading. Varje behandling anpassas individuellt.",
+    heroEyebrow: "Skönhet, lugn och välbefinnande",
+    heroText: "En lyxig stund bara för dig. Omsorgsfulla skönhets- och välmåendebehandlingar från topp till tå.",
+    heroBtn: "Boka din stund",
+    serviceEyebrow: "Våra tjänster",
+    serviceTitle: "Behandlingar och priser",
+    serviceIntro: "Klicka på ett behandlingskort för att se information, bilder, pris och behandlingstid.",
+    galleryEyebrow: "Inspiration",
+    galleryTitle: "Skönhetsstunder",
+    galleryIntro: "En glimt av våra behandlingar och salongens atmosfär.",
+    bookingEyebrow: "Tidsbokning",
+    contactEyebrow: "Hitta hit",
+    contactTitle: "Kontakt och läge",
+    contactIntro: "Lägg till salongens riktiga adress och kontaktuppgifter här.",
+    address: "Adress",
+    phone: "Telefon",
+    email: "E-post",
+    footer: "Skönhet och välbefinnande",
+    priceNote: "Priser och tider är förslag. Bekräfta din prislista, behandlingstider och eventuella återbesök före publicering. Permanent makeup och microblading kräver konsultation och bedömning före behandling."
+  },
+
+  en: {
+    book: "Book now",
+    duration: "Duration",
+    price: "Price from",
+    details: "About this treatment",
+    close: "Close",
+    prev: "Previous image",
+    next: "Next image",
+    from: "From",
+    view: "Learn more",
+    bookTreatment: "Book this treatment",
+    bookingTitle: "Book online",
+    bookingDesc: "Choose a service, select an available time and confirm your appointment through Timma's secure booking system.",
+    bookingSetup: "Timma booking will be connected here once you have your own booking link or embed code.",
+    aboutEyebrow: "Welcome",
+    aboutTitle: "Beauty in every detail",
+    about1: "Kruunun Beauty offers a calm and luxurious space where you can pause and enjoy a moment just for yourself.",
+    about2: "Our services include manicure, pedicure, facials, relaxing massage, permanent makeup and microblading. Every treatment is tailored to your needs.",
+    heroEyebrow: "Beauty, calm and indulgence",
+    heroText: "A luxurious moment just for you. Thoughtfully designed beauty and wellness treatments from head to toe.",
+    heroBtn: "Book your moment",
+    serviceEyebrow: "Our services",
+    serviceTitle: "Treatments and prices",
+    serviceIntro: "Click a treatment card to view details, photos, price and duration.",
+    galleryEyebrow: "Inspiration",
+    galleryTitle: "Moments of beauty",
+    galleryIntro: "A glimpse of our treatments and salon atmosphere.",
+    bookingEyebrow: "Appointments",
+    contactEyebrow: "Find us",
+    contactTitle: "Contact and location",
+    contactIntro: "Add the salon's real address and contact details here.",
+    address: "Address",
+    phone: "Phone",
+    email: "Email",
+    footer: "Beauty and wellbeing",
+    priceNote: "Prices and durations are suggestions. Confirm your own price list, treatment times and any follow-up appointments before publishing. Permanent makeup and microblading require a prior consultation and suitability assessment."
+  }
 };
-const t=WORDS[LANG]||WORDS.fi;
-document.querySelectorAll("[data-word]").forEach(el=>{const k=el.dataset.word;if(t[k])el.textContent=t[k]});
-const cardHost=document.getElementById("servicesTrack");
-if(cardHost){cardHost.innerHTML=SERVICES.map(s=>`<button class="service-card" type="button" data-service="${s.id}" aria-label="${s.title[LANG]}"><img src="${s.images[0]}" alt="${s.title[LANG]}" loading="lazy"><div class="service-info"><h3>${s.title[LANG]}</h3><p>${s.short[LANG]}</p><div class="service-meta"><span>${t.duration}: ${s.duration}</span><strong>${t.from} ${s.price}</strong></div></div></button>`).join("");}
-const modal=document.getElementById("serviceModal");let currentService=null,slideIndex=0;
-function renderModal(){if(!currentService)return;const s=currentService;document.getElementById("modalTitle").textContent=s.title[LANG];document.getElementById("modalDescription").textContent=s.desc[LANG];document.getElementById("modalDuration").textContent=s.duration;document.getElementById("modalPrice").textContent=s.price;document.getElementById("modalImage").src=s.images[slideIndex];document.getElementById("modalImage").alt=s.title[LANG];document.getElementById("modalDots").innerHTML=s.images.map((_,i)=>`<button type="button" class="${i===slideIndex?"active":""}" aria-label="Slide ${i+1}" data-dot="${i}"></button>`).join("");document.getElementById("modalBook").href="#booking";document.getElementById("modalBook").onclick=()=>{modal.classList.remove("open");document.getElementById("booking").scrollIntoView({behavior:"smooth"});};}
-function openService(id){currentService=SERVICES.find(s=>s.id===id);slideIndex=0;renderModal();modal.classList.add("open");document.body.style.overflow="hidden";}
-function closeModal(){modal.classList.remove("open");document.body.style.overflow="";}
-if(cardHost)cardHost.addEventListener("click",e=>{const card=e.target.closest("[data-service]");if(card)openService(card.dataset.service)});
-document.getElementById("modalClose").addEventListener("click",closeModal);
-modal.addEventListener("click",e=>{if(e.target===modal)closeModal();if(e.target.dataset.dot!==undefined){slideIndex=Number(e.target.dataset.dot);renderModal();}});
-document.getElementById("modalPrev").addEventListener("click",()=>{if(currentService){slideIndex=(slideIndex+currentService.images.length-1)%currentService.images.length;renderModal();}});
-document.getElementById("modalNext").addEventListener("click",()=>{if(currentService){slideIndex=(slideIndex+1)%currentService.images.length;renderModal();}});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal();if(modal.classList.contains("open")&&currentService){if(e.key==="ArrowRight")document.getElementById("modalNext").click();if(e.key==="ArrowLeft")document.getElementById("modalPrev").click();}});
-const nav=document.getElementById("mainNav");document.getElementById("menuToggle").addEventListener("click",()=>nav.classList.toggle("open"));nav.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>nav.classList.remove("open")));
-document.getElementById("year").textContent=new Date().getFullYear();
-// Hero image slideshow
-const heroSlides=[...document.querySelectorAll(".hero-slide")];let heroIndex=0;if(heroSlides.length>1)setInterval(()=>{heroSlides[heroIndex].classList.remove("active");heroIndex=(heroIndex+1)%heroSlides.length;heroSlides[heroIndex].classList.add("active");},5200);
-// Booking: use the embed iframe generated inside your Timma account. See README.
-const bookingLink=document.getElementById("bookingLink");if(bookingLink)bookingLink.href=BOOKING_URL;
+
+
+// --------------------------------------------------
+// LANGUAGE SETUP
+// --------------------------------------------------
+
+const t = WORDS[LANG] || WORDS.fi;
+
+document.querySelectorAll("[data-word]").forEach(el => {
+  const key = el.dataset.word;
+
+  if (t[key]) {
+    el.textContent = t[key];
+  }
+});
+
+
+// --------------------------------------------------
+// SERVICE CARDS
+// --------------------------------------------------
+
+const cardHost = document.getElementById("servicesTrack");
+
+if (cardHost) {
+  cardHost.innerHTML = SERVICES.map(service => `
+    <button
+      class="service-card"
+      type="button"
+      data-service="${service.id}"
+      aria-label="${service.title[LANG]}"
+    >
+      <img
+        src="${service.images[0]}"
+        alt="${service.title[LANG]}"
+        loading="lazy"
+      >
+
+      <div class="service-info">
+        <h3>${service.title[LANG]}</h3>
+        <p>${service.short[LANG]}</p>
+
+        <div class="service-meta">
+          <span>${t.duration}: ${service.duration}</span>
+          <strong>${t.from} ${service.price}</strong>
+        </div>
+      </div>
+    </button>
+  `).join("");
+}
+
+
+// --------------------------------------------------
+// SERVICE MODAL
+// --------------------------------------------------
+
+const modal = document.getElementById("serviceModal");
+
+let currentService = null;
+let slideIndex = 0;
+
+function renderModal() {
+  if (!currentService) return;
+
+  const service = currentService;
+
+  document.getElementById("modalTitle").textContent =
+    service.title[LANG];
+
+  document.getElementById("modalDescription").textContent =
+    service.desc[LANG];
+
+  document.getElementById("modalDuration").textContent =
+    service.duration;
+
+  document.getElementById("modalPrice").textContent =
+    service.price;
+
+  document.getElementById("modalImage").src =
+    service.images[slideIndex];
+
+  document.getElementById("modalImage").alt =
+    service.title[LANG];
+
+  document.getElementById("modalDots").innerHTML =
+    service.images.map((_, index) => `
+      <button
+        type="button"
+        class="${index === slideIndex ? "active" : ""}"
+        aria-label="Slide ${index + 1}"
+        data-dot="${index}"
+      ></button>
+    `).join("");
+
+  const modalBook = document.getElementById("modalBook");
+
+  modalBook.href = "#booking";
+
+  modalBook.onclick = () => {
+    modal.classList.remove("open");
+
+    document.getElementById("booking").scrollIntoView({
+      behavior: "smooth"
+    });
+  };
+}
+
+
+function openService(id) {
+  currentService = SERVICES.find(service => service.id === id);
+
+  if (!currentService) return;
+
+  slideIndex = 0;
+
+  renderModal();
+
+  modal.classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+
+function closeModal() {
+  modal.classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+
+// Open service modal when clicking a card.
+
+if (cardHost) {
+  cardHost.addEventListener("click", event => {
+    const card = event.target.closest("[data-service]");
+
+    if (card) {
+      openService(card.data
