@@ -26,53 +26,72 @@
 
     <div class="goldline"></div>
 
-    <!-- HEADER -->
-    <header>
-        <div class="nav-wrap">
+<header class="site-header">
 
-            <a class="brand" href="#home">
-                <img
-                    src="assets/images/logo-placeholder.svg"
-                    alt="Kruunun Beauty logo"
-                >
+    <div class="nav-wrap">
 
-                <span class="brand-copy">
-                    <span class="brand-name">Kruunun Beauty</span>
-                    <span class="brand-tag">Beauty · Wellness · Luxury</span>
+        <!-- LOGOTYP OCH FÖRETAGSNAMN -->
+        <a class="brand" href="#home">
+
+            <img
+                src="assets/images/logo.png"
+                alt="Kruunun Beauty"
+                class="brand-logo"
+            >
+
+            <span class="brand-copy">
+                <span class="brand-name">
+                    Kruunun Beauty
                 </span>
-            </a>
 
-            <div class="nav-side">
+                <span class="brand-tag">
+                    Beauty · Wellness · Luxury
+                </span>
+            </span>
 
-                <!-- Navigation -->
-                <nav id="mainNav">
-                    <a href="#home">Hem</a>
-                    <a href="#about">Om oss</a>
-                    <a href="#services">Behandlingar</a>
-                    <a href="#gallery">Galleri</a>
-                    <a href="#booking">Boka tid</a>
-                    <a href="#contact">Kontakt</a>
-                </nav>
+        </a>
 
-                <!-- Language selector -->
-                <div class="lang-switch">
-                    <a href="index.html" aria-label="Suomi">🇫🇮</a>
-                    <a class="active" href="sv.html" aria-label="Svenska">🇸🇪</a>
-                    <a href="en.html" aria-label="English">🇬🇧</a>
-                </div>
+        <!-- NAVIGATION OCH SPRÅK -->
+        <div class="nav-side">
 
-                <!-- Mobile menu -->
-                <button
-                    class="menu-toggle"
-                    id="menuToggle"
-                    aria-label="Öppna meny"
-                >
-                    ☰
-                </button>
+            <nav id="mainNav">
+
+                <a href="#home">Hem</a>
+                <a href="#about">Om oss</a>
+                <a href="#services">Behandlingar</a>
+                <a href="#gallery">Galleri</a>
+                <a href="#booking">Boka tid</a>
+                <a href="#contact">Kontakt</a>
+
+            </nav>
+
+            <!-- SPRÅKVÄLJARE -->
+            <div class="lang-switch">
+
+                <a href="index.html" aria-label="Suomi">🇫🇮</a>
+                <a href="sv.html" class="active" aria-label="Svenska">🇸🇪</a>
+                <a href="en.html" aria-label="English">🇬🇧</a>
 
             </div>
+
+            <!-- MOBILMENY -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                aria-label="Öppna meny"
+                aria-expanded="false"
+                aria-controls="mainNav"
+            >
+                ☰
+            </button>
+
         </div>
-    </header>
+
+    </div>
+
+</header>
+
+ 
 
     <main>
 
